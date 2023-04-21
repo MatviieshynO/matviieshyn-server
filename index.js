@@ -6,10 +6,10 @@ import Message from './Message.js'
 
 dotenv.config()
 const server = express()
-server.use(cors())
 //dotenv
 const { PORT, DB_NAME, DB_PASSWORD, DB_USER } = process.env
 //midleware
+server.use(cors())
 server.use(express.json())
 //routes
 server.post('/message', async (req, res) => {
@@ -31,7 +31,7 @@ server.post('/message', async (req, res) => {
     })
   } catch (error) {
     res.json({
-      message: `Error sending message`,
+      message: `Error sending message `,
     })
   }
 })
