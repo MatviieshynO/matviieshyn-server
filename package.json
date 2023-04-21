@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemailer"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",

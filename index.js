@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import Message from './models/Message.js'
+import Message from './Message.js'
 
 dotenv.config()
 const server = express()
