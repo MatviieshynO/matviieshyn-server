@@ -2,17 +2,17 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import Message from './Message.js'
+import Message from './model/Message.js'
 
-dotenv.config()
 const server = express()
 //dotenv
+dotenv.config()
 const { PORT, DB_NAME, DB_PASSWORD, DB_USER } = process.env
 //midleware
 server.use(cors())
 server.use(express.json())
 //routes
-server.post('/message', async (req, res) => {
+server.post('api/message', async (req, res) => {
   try {
     if (!req.body)
       res.json({
