@@ -10,7 +10,7 @@ server.use(cors())
 dotenv.config()
 //constants
 const PORT = process.env.PORT
-const MONGODB_URL = process.env.MONGODB_URL
+const MONGODB_URI = process.env.MONGODB_URI
 //midleware
 server.use(express.json({ extended: true }))
 //routes
@@ -45,7 +45,7 @@ server.post('/message', async (req, res) => {
 
 async function start() {
   try {
-    await mongoose.connect(MONGODB_URL, {
+    await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
