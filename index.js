@@ -26,9 +26,9 @@ server.post('/message', async (req, res) => {
     }
 
     const message1 = new Message({
-      yourName,
-      titleMessage,
-      bodyMessage,
+      yourName: yourName,
+      titleMessage: titleMessage,
+      bodyMessage: bodyMessage,
     })
     await message1.save()
     return res.json({
@@ -45,11 +45,7 @@ server.post('/message', async (req, res) => {
 async function start() {
   try {
     await mongoose.connect(
-      `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.fithmoe.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`,
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
+      `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.fithmoe.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
     )
     server.listen(PORT, () => console.log(`Server listening ${PORT} port`))
   } catch (error) {
