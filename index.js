@@ -24,6 +24,9 @@ server.post('/message', async (req, res) => {
     if (!bodyMessage) {
       return res.json({ message: 'bodyMessage' })
     }
+    return res.json({
+      message: 'Complete',
+    })
 
     // const message1 = new Message({
     //   yourName,
