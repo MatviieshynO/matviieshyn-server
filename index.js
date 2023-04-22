@@ -31,10 +31,7 @@ server.post('/message', async (req, res) => {
       bodyMessage: bodyMessage,
     })
     await message1.save()
-    return res.json({
-      message1,
-      message: 'Complete',
-    })
+    res.send(message1)
   } catch (error) {
     res.json({
       message: error,
