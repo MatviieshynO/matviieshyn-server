@@ -12,23 +12,29 @@ const { PORT, DB_NAME, DB_PASSWORD, DB_USER } = process.env
 server.use(cors())
 server.use(express.json())
 //routes
-server.get('/', (req, res) => {
-  res.send('Heelo world')
-})
 server.post('/message', async (req, res) => {
   try {
     const { yourName, titleMessage, bodyMessage } = req.body
+    if (!yourName) {
+      return res.json({ message: 'yourName' })
+    }
+    if (!titleMessage) {
+      return res.json({ message: 'titleMessage' })
+    }
+    if (!bodyMessage) {
+      return res.json({ message: 'bodyMessage' })
+    }
 
-    const message1 = new Message({
-      yourName,
-      titleMessage,
-      bodyMessage,
-    })
-    await message1.save()
-    res.json({
-      message1,
-      message: 'Thank you, message sent',
-    })
+    // const message1 = new Message({
+    //   yourName,
+    //   titleMessage,
+    //   bodyMessage,
+    // })
+    // await message1.save()
+    // res.json({
+    //   message1,
+    //   message: 'Thank you, message sent',
+    // })
   } catch (error) {
     res.json({
       message: error,
