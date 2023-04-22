@@ -10,7 +10,7 @@ dotenv.config()
 const { PORT, DB_NAME, DB_PASSWORD, DB_USER } = process.env
 //midleware
 server.use(cors())
-server.use(express.json())
+server.use(express.json({ extended: true }))
 //routes
 server.post('/message', async (req, res) => {
   try {
