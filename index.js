@@ -31,7 +31,7 @@ server.post('/message', async (req, res) => {
     })
   } catch (error) {
     res.json({
-      message: 'rerror errroro efsdfsdfdsf',
+      message: error,
     })
   }
 })
