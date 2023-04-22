@@ -45,7 +45,7 @@ async function start() {
         useUnifiedTopology: true,
       }
     )
-    server.listen('https://matviieshyn-server.vercel.app', () =>
+    server.listen(3001, () =>
       console.log(`Server listening  htttp://localhost${PORT}`)
     )
   } catch (error) {
