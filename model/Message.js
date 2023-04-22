@@ -1,18 +1,21 @@
 import { Schema, model } from 'mongoose'
 
-const userSchema = new Schema(
+const messageSchema = new Schema(
   {
-    name: {
+    yourName: {
       type: String,
+      required: true,
     },
-    title: {
+    titleMessage: {
       type: String,
+      required: true,
     },
-    body: {
+    bodyMessage: {
       type: String,
+      required: true,
     },
   },
   { timestamps: true }
 )
 
-export default model('Message', userSchema)
+export default model('Message', messageSchema)

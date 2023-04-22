@@ -7,7 +7,9 @@ import Message from './model/Message.js'
 const server = express()
 //dotenv
 dotenv.config()
-const { PORT, DB_NAME, DB_PASSWORD, DB_USER } = process.env
+//constants
+const PORT = process.env.PORT
+const MONGODB_URL = process.env.MONGODB_URL
 //midleware
 server.use(cors())
 server.use(express.json({ extended: true }))
@@ -24,11 +26,15 @@ server.post('/message', async (req, res) => {
     if (!bodyMessage) {
       return res.json({ message: 'bodyMessage' })
     }
-
-    res.json({
+    const sendMessage = new Message({
       yourName,
       titleMessage,
       bodyMessage,
+    })
+    sendMessage.save()
+
+    res.json({
+      sendMessage,
       message: 'Complete',
     })
   } catch (error) {
@@ -40,9 +46,10 @@ server.post('/message', async (req, res) => {
 
 async function start() {
   try {
-    await mongoose.connect(
-      `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.fithmoe.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
-    )
+    await mongoose.connect(MONGODB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
     server.listen(PORT, () => console.log(`Server listening ${PORT} port`))
   } catch (error) {
     console.log(error)
