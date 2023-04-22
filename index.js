@@ -24,20 +24,16 @@ server.post('/message', async (req, res) => {
     if (!bodyMessage) {
       return res.json({ message: 'bodyMessage' })
     }
+    const message = new Message({
+      yourName,
+      titleMessage,
+      bodyMessage,
+    })
+    await message.save()
     return res.json({
       message: 'Complete',
+      message,
     })
-
-    // const message1 = new Message({
-    //   yourName,
-    //   titleMessage,
-    //   bodyMessage,
-    // })
-    // await message1.save()
-    // res.json({
-    //   message1,
-    //   message: 'Thank you, message sent',
-    // })
   } catch (error) {
     res.json({
       message: error,
