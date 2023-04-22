@@ -31,7 +31,7 @@ server.post('/message', async (req, res) => {
       titleMessage,
       bodyMessage,
     })
-    await sendMessage.save()
+    await sendMessage.save()    
 
     res.json({
       sendMessage,
