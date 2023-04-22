@@ -12,6 +12,9 @@ const { PORT, DB_NAME, DB_PASSWORD, DB_USER } = process.env
 server.use(cors())
 server.use(express.json())
 //routes
+server.get('/', (req, res) => {
+  res.send('Heelo world')
+})
 server.post('api/message', async (req, res) => {
   try {
     if (!req.body)
@@ -45,9 +48,7 @@ async function start() {
         useUnifiedTopology: true,
       }
     )
-    server.listen(3001, () =>
-      console.log(`Server listening  htttp://localhost${PORT}`)
-    )
+    server.listen(PORT, () => console.log(`Server listening ${PORT} port`))
   } catch (error) {
     console.log(error)
   }
