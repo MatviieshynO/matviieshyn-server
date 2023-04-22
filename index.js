@@ -17,11 +17,11 @@ server.get('/', (req, res) => {
 })
 server.post('/message', async (req, res) => {
   try {
+    const { yourName, titleMessage, bodyMessage } = req.body
     if (!req.body)
-      res.json({
+      return res.json({
         message: 'Enter the data',
       })
-    const { yourName, titleMessage, bodyMessage } = req.body
 
     const message = new Message({
       yourName,
@@ -29,8 +29,9 @@ server.post('/message', async (req, res) => {
       bodyMessage,
     })
     await message.save()
-    res.json({
+    return res.json({
       message: 'Thank you, message sent',
+      message,
     })
   } catch (error) {
     res.json({
