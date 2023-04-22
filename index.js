@@ -25,7 +25,12 @@ server.post('/message', async (req, res) => {
       return res.json({ message: 'bodyMessage' })
     }
 
-    res.send(req.body)
+    res.json({
+      yourName,
+      titleMessage,
+      bodyMessage,
+      message: 'Complete',
+    })
   } catch (error) {
     res.json({
       message: error,
