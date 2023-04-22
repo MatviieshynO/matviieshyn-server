@@ -18,13 +18,13 @@ server.post('/message', async (req, res) => {
   try {
     const { yourName, titleMessage, bodyMessage } = req.body
     if (!yourName) {
-      return res.json({ message: 'yourName' })
+      return res.json({ message: 'Enter your name' })
     }
     if (!titleMessage) {
-      return res.json({ message: 'titleMessage' })
+      return res.json({ message: 'Enter title' })
     }
     if (!bodyMessage) {
-      return res.json({ message: 'bodyMessage' })
+      return res.json({ message: 'Enter bodyMessage' })
     }
     const sendMessage = new Message({
       yourName,
@@ -35,7 +35,7 @@ server.post('/message', async (req, res) => {
 
     return res.json({
       sendMessage,
-      message: 'Complete',
+      message: 'Sending is complete',
     })
   } catch (error) {
     res.json({
