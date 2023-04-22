@@ -29,7 +29,7 @@ server.post('/message', async (req, res) => {
       titleMessage,
       bodyMessage,
     })
-    await message.save()
+    await Message.save()
     return res.json({
       message: 'Complete',
       message,
