@@ -18,24 +18,20 @@ server.get('/', (req, res) => {
 server.post('/message', async (req, res) => {
   try {
     const { yourName, titleMessage, bodyMessage } = req.body
-    if (!req.body)
-      return res.json({
-        message: 'Enter the data',
-      })
 
-    const message = new Message({
+    const message1 = new Message({
       yourName,
       titleMessage,
       bodyMessage,
     })
-    await message.save()
-    return res.json({
+    await message1.save()
+    res.json({
+      message1,
       message: 'Thank you, message sent',
-      message,
     })
   } catch (error) {
     res.json({
-      message: `Error sending message `,
+      message: 'rerror errroro efsdfsdfdsf',
     })
   }
 })
