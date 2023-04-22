@@ -5,13 +5,13 @@ import cors from 'cors'
 import Message from './model/Message.js'
 
 const server = express()
+server.use(cors())
 //dotenv
 dotenv.config()
 //constants
 const PORT = process.env.PORT
 const MONGODB_URL = process.env.MONGODB_URL
 //midleware
-server.use(cors())
 server.use(express.json({ extended: true }))
 //routes
 server.post('/message', async (req, res) => {
@@ -31,7 +31,7 @@ server.post('/message', async (req, res) => {
       titleMessage,
       bodyMessage,
     })
-    sendMessage.save()
+    await sendMessage.save()
 
     res.json({
       sendMessage,
