@@ -15,7 +15,7 @@ server.use(express.json())
 server.get('/', (req, res) => {
   res.send('Heelo world')
 })
-server.post('api/message', async (req, res) => {
+server.post('/message', async (req, res) => {
   try {
     if (!req.body)
       res.json({
@@ -24,9 +24,9 @@ server.post('api/message', async (req, res) => {
     const { yourName, titleMessage, bodyMessage } = req.body
 
     const message = new Message({
-      name: yourName,
-      title: titleMessage,
-      body: bodyMessage,
+      yourName,
+      titleMessage,
+      bodyMessage,
     })
     await message.save()
     res.json({
