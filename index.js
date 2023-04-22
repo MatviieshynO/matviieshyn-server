@@ -33,7 +33,8 @@ server.post('/message', async (req, res) => {
     })
     await sendMessage.save()
 
-    res.json({
+    return res.json({
+      sendMessage,
       message: 'Complete',
     })
   } catch (error) {
