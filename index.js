@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import Message from './model/Message.js'
+import MessageSuprun from './model/MessageSuprun.js'
 
 const server = express()
 server.use(cors())
@@ -29,6 +30,39 @@ server.post('/message', async (req, res) => {
     const sendMessage = new Message({
       yourName,
       titleMessage,
+      bodyMessage,
+    })
+    await sendMessage.save()
+
+    return res.json({
+      sendMessage,
+      message: 'Sending is complete',
+    })
+  } catch (error) {
+    res.json({
+      message: error,
+    })
+  }
+})
+server.post('/messageSuprun', async (req, res) => {
+  try {
+    const { yourName, yourEmail, yourTelephoneNumber, bodyMessage } = req.body
+    if (!yourName) {
+      return res.json({ message: 'Enter your name' })
+    }
+    if (!yourEmail) {
+      return res.json({ message: 'Enter your Email' })
+    }
+    if (!yourTelephoneNumber) {
+      return res.json({ message: 'Enter your telephone number' })
+    }
+    if (!bodyMessage) {
+      return res.json({ message: 'Enter text message' })
+    }
+    const sendMessage = new MessageSuprun({
+      yourName,
+      yourEmail,
+      yourTelephoneNumber,
       bodyMessage,
     })
     await sendMessage.save()
